@@ -43,23 +43,30 @@ const CardContainer = () => {
   ];
 
   return (
-    <div className="relative mt-20 pt-30 bg-sky-100 pb-35">
+    <div className="relative mt-20 pt-30 bg-[#E1F3F8] pb-35">
       <div className="max-w-7xl px-6 mx-auto">
+        <div
+          className="absolute left-0 mt-[-200px] w-full h-20 bg-[#E1F3F8] z-10"
+          style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
+        >
+          
+        </div>
+
         <div
           className="absolute -bottom-1 left-0 w-full h-20 bg-white z-10"
           style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
         ></div>
 
-           <Image
-                      src="/down-curved-arrow.svg"
-                      alt="arrow"
-                      height={20}
-                      width={50}
-                      className="absolute right-90 -bottom-5 font-bold  rotate-12 z-40"
-                    />
-                    <span className="absolute right-90 bottom-10 font-bold text-lg text-black rotate-12 z-40 ">
-                      Look! A video <br/> to watch!
-                    </span>
+        <Image
+          src="/down-curved-arrow.svg"
+          alt="arrow"
+          height={20}
+          width={50}
+          className="absolute right-90 -bottom-5 font-bold  rotate-12 z-40"
+        />
+        <span className="absolute right-90 bottom-10 font-bold text-lg text-black rotate-12 z-40 ">
+          Look! A video <br /> to watch!
+        </span>
         {/* Top Section: Heading + First 2 Cards */}
         <div className="md:col-span-2 col-span-1 flex items-start">
           {/* Left side heading */}

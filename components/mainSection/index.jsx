@@ -5,14 +5,13 @@ import React from "react";
 const MainSection = () => {
   return (
     <div>
-      <div className=" relative bg-[#F4B233] pb-24">
+      <div className=" relative bg-sky-100 pb-24">
         <div className="flex gap-10 p-10 items-center justify-items-center">
           <div
             className="absolute -bottom-1 left-0 w-full h-20 bg-white z-10"
             style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
           ></div>
           <div className="relative">
-            {/* Get the Deets! text */}
             <Image
               src="/down-small-arrow.c63f7e3b.svg"
               alt="arrow"
@@ -21,10 +20,11 @@ const MainSection = () => {
               className="absolute -right-35 -bottom-35 font-bold  rotate-12 z-40"
             />
             <span className="absolute -right-40 -bottom-16 font-bold text-lg text-black rotate-12 z-40 ">
-              Pack it<br/> your way
+              Pack it
+              <br /> your way
             </span>
             <Image
-              src="/filters_format(webp)_quality(95) (1).webp"
+              src="/filters_format(webp)_7.webp"
               alt="perk"
               width={800}
               height={700}
@@ -44,7 +44,7 @@ const MainSection = () => {
             </p>
             <div className="flex gap-4 mt-2">
               <Link href="/" passHref>
-                <button className="flex items-center font-bold text-black px-4 py-4 border rounded-2xl transition-all duration-300 ease-in-out hover:bg-[#6a1826] hover:-translate-y-1">
+                <button className="flex items-center font-bold text-black px-4 py-4 border rounded-2xl transition-all duration-300 ease-in-out hover:bg-[#6a1826] hover:text-amber-50 hover:-translate-y-1">
                   Order Samples
                 </button>
               </Link>
@@ -58,7 +58,9 @@ const MainSection = () => {
               <p className="mt-6  font-weight-inherit opacity-90">
                 Been around the block, already?{" "}
                 <Link href="/">
-                  <button className="cursor-pointer hover:underline transition-all duration-300 ease-in-out" >Log in Here</button>
+                  <button className="cursor-pointer hover:underline transition-all duration-300 ease-in-out">
+                    Log in Here
+                  </button>
                 </Link>
               </p>
             </div>
@@ -69,7 +71,9 @@ const MainSection = () => {
         <h1 className="font-bold text-4xl mt-20 tracking-tighter text-center ">
           Custom bags, tin cans, labels, and beyond.
         </h1>
-        <h2 className="font-bold text-2xl mt-5 tracking-tighter text-center text-blue-500">The way custom-printed packaging was meant to be</h2>
+        <h2 className="font-bold text-2xl mt-5 tracking-tighter text-center text-blue-500">
+          The way custom-printed packaging was meant to be
+        </h2>
         <p className="font-bold text-sm mt-5  text-center text-gray-700">
           Use your own art or have our network of designers help you bring your
           vision <br /> to life. Pick your perfect exterior, including
