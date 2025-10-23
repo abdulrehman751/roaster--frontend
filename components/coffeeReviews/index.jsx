@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Star } from "lucide-react";
 
-const ReviewsSection = () => {
+const CoffeeReviews = () => {
   const reviews = [
     {
       title: "Better than expected and fast shipping!",
@@ -38,27 +38,23 @@ const ReviewsSection = () => {
   };
 
   return (
-    <section className="bg-blue-50 relative py-40 px-6 md:px-12 clip_path ">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10 ">
-     
+    <section className="py-20 px-6 md:px-12 clip_path mx-auto ">
+      <div className="w-full mx-auto flex flex-col  md:flex-row justify-between items-center gap-10 p-15 ">
         {/* Left Text */}
-        <div className="flex-1">
-          <h2 className="text-5xl font-bold mb-4">What’s the buzz?</h2>
+        <div className="w-[400px] flex-1">
+          <h2 className="text-5xl font-bold mb-4">
+            We like our feedback like we like our coffee.
+          </h2>
           <p className="text:md xl:text-lg text-gray-700 mb-4">
-            We don’t do it for the clout, we do it to support the passions and
-            dreams of small businesses. Of course, when a customer has nice
-            things to say, we’ll happily pass them along.
+            Meaning fresh, strong, and direct from small businesses. We love
+            hearing about our clients’ experiences – especially about how we can
+            make the packaging process even smoother. That last part is kind of
+            why we exist.
           </p>
-          <a
-            href="#"
-            className="text-red-400 font-semibold underline hover:underline transition"
-          >
-            See more reviews
-          </a>
         </div>
 
         {/* Right Review Card */}
-        <div className="flex-1 bg-white rounded-2xl shadow-lg p-15 max-w-lg relative">
+        <div className="flex-1 bg-white rounded-2xl shadow-lg px-40  p-15 ">
           {/* Trustpilot Header */}
           <div className="flex items-center justify-center mb-4">
             <div>
@@ -67,11 +63,7 @@ const ReviewsSection = () => {
               </h3>
               <div className="flex gap-1 mt-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={18}
-                    className=" bg-[#00856C]"
-                  />
+                  <Star key={i} size={18} className=" bg-[#00856C]" />
                 ))}
               </div>
               <p className="text-gray-500 text-sm mt-1">
@@ -84,30 +76,33 @@ const ReviewsSection = () => {
           </div>
 
           {/* Review Content */}
-          <p className="text-sm text-gray-500 mb-2">
-            Showing our 5 star reviews
-          </p>
-          <h4 className="font-semibold text-lg mb-2">
-            {reviews[current].title}
-          </h4>
-          <p className="text-gray-700 mb-4">{reviews[current].content}</p>
-          <p className="text-sm text-gray-500">
-            {reviews[current].author}, {reviews[current].date}
-          </p>
-
+          <div className="flex flex-col mr-50">
+            <p className="text-sm text-gray-500 mb-2">
+              Showing our 5 star reviews
+            </p>
+            <h4 className="font-semibold text-lg mb-2">
+              {reviews[current].title}
+            </h4>
+            <p className="text-gray-700 mb-4">{reviews[current].content}</p>
+            <p className="text-sm text-gray-500">
+              {reviews[current].author}, {reviews[current].date}
+            </p>
+          </div>
           {/* Navigation Arrows */}
-          <button
-            onClick={prevReview}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
-          >
-            ←
-          </button>
-          <button
-            onClick={nextReview}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
-          >
-            →
-          </button>
+          <div className="absolute">
+            <button
+              onClick={prevReview}
+              className="relative right-20 top-[20%] -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+            >
+              ←
+            </button>
+            <button
+              onClick={nextReview}
+              className="relative left-100 top-1/2 -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow hover:bg-gray-200"
+            >
+              →
+            </button>
+          </div>
 
           {/* Dots */}
           <div className="flex justify-center mt-4 gap-2">
@@ -126,4 +121,4 @@ const ReviewsSection = () => {
   );
 };
 
-export default ReviewsSection;
+export default CoffeeReviews;

@@ -9,7 +9,7 @@ const TopNavBar = () => {
   return (
     <div className=' bg-black text-white p-1.5  w-full '>
         <div className="flex justify-around gap-4 items-center">
-        <div  className="flex  gap-10 pt-2" >
+        <div  className=" hidden xl:flex  xl:gap-10 pt-2 " >
           <Link href="/" >
             <button>
               <IoLogoFacebook size={23} />{" "}
@@ -29,13 +29,13 @@ const TopNavBar = () => {
       
 
       
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 items-center '>
           <Link href="/">
-            <button>
-              <IoIosArrowBack size={20} />
+            <button className='md:block hidden '>
+              <IoIosArrowBack size={20}  />
             </button>
           </Link>
-          <span className="mx-4 whitespace-nowrap">9/29 Only - Celebrate National Coffee Day with Big Perks. Details Here.</span>
+          <span className="font-stretch-condensed  mx-4 xl:text-lg text-12px  sm:tracking-tight">Only Celebrate National Coffee Day.Details Here.</span>
           <Link href="/">
             <button>
               <IoChevronForwardSharp size={20} />
@@ -44,20 +44,20 @@ const TopNavBar = () => {
         </div>
       
 
-      <div className='flex gap-8 items-center'>
+      <div className='flex gap-5  xl:gap-8 items-center '>
         <Link href="/">
-          <button>
-            <IoSearchSharp size={23} />
+          <button className=''>
+            <IoSearchSharp size={20} />
           </button>
         </Link>
         <Link href="/">
           <button>
-            <RiAdminFill size={23} />
+            <RiAdminFill size={20} />
           </button>
         </Link>
         <Link href="/">
           <button>
-            <IoCart size={23} />
+            <IoCart size={20} />
           </button>
         </Link>
       </div>

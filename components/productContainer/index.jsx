@@ -42,7 +42,7 @@ const ProductContainer = () => {
 
   return (
     <section
-      className="bg-[#E1F3F8] relative py-50 mt-32 px-4 md:px-12 overflow-hidden clip_path"
+      className="bg-[#E1F3F8] relative py-50 mt-10 px-4 md:px-12 overflow-hidden clip_path"
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 pb-24">
         {/* LEFT: Image Section */}
@@ -65,7 +65,7 @@ const ProductContainer = () => {
 
         {/* RIGHT: Buttons Section */}
         <div className="flex-1 max-w-xl">
-          <h2 className="font-bold text-4xl mb-4">
+          <h2 className="font-bold text-3xl tracking-tighter xl:text-4xl mb-4">
             Whatever you’re packaging, we have a product for you.
           </h2>
           <p className="mb-8 text-lg text-gray-700">

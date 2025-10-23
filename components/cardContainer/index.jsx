@@ -44,53 +44,93 @@ const CardContainer = () => {
 
   return (
     <div className="relative mt-20 pt-30 bg-[#E1F3F8] pb-35">
-      <div className="max-w-7xl px-6 mx-auto">
+      <div className="max-w-7xl px-6 mx-auto ">
         <div
-          className="absolute left-0 mt-[-200px] w-full h-20 bg-[#E1F3F8] z-10"
-          style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
-        >
-          
-        </div>
-
-        <div
-          className="absolute -bottom-1 left-0 w-full h-20 bg-white z-10"
+          className="absolute left-0 mt-[-200px] w-full h-20 bg-[#E1F3F8] z-10 hidden sm:block"
           style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
         ></div>
+         <div
+          className="absolute left-0 mt-[-200px] w-full h-20 bg-[#E1F3F8] z-10 block sm:hidden"></div>
 
+        <div
+          className="absolute -bottom-1 left-0 w-full h-20 bg-white z-10 hidden sm:block"
+          style={{ clipPath: "polygon(100% 0, 100% 101%, 0 101%)" }}
+        ></div>
+        <div
+          className="absolute -bottom-1 left-0 w-full h-20 bg-white z-10 block sm:hidden"></div>
+      <div className="absolute  right-[10%] bottom-20 font-bold text-lg text-black rotate-12 z-40 ">
+          Look! A video <br /> to watch!
+        </div>
         <Image
           src="/down-curved-arrow.svg"
           alt="arrow"
           height={20}
           width={50}
-          className="absolute right-90 -bottom-5 font-bold  rotate-12 z-40"
+          className="absolute right-[10%] bottom-6 font-bold  rotate-12 z-40"
         />
-        <span className="absolute right-90 bottom-10 font-bold text-lg text-black rotate-12 z-40 ">
-          Look! A video <br /> to watch!
-        </span>
+  
         {/* Top Section: Heading + First 2 Cards */}
-        <div className="md:col-span-2 col-span-1 flex items-start">
-          {/* Left side heading */}
-          <div>
-            <h1 className="font-bold text-4xl mb-4">Hi, we're Roastar.</h1>
-            <p className="text-lg text-gray-700">
-              We believe that every business deserves to look like a really big
-              deal. From coffee to chocolate, pet treats to specialty foods,
-              whatever you’re packaging – we're here to help.
-            </p>
+        {/* Outer container */}
+        <div className="px-6 xl:px-20 py-10">
+          {/* === TOP SECTION: Text + First 2 Cards === */}
+          <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 items-start gap-8">
+            {/* Left side heading */}
+            <div>
+              <h1 className="font-bold text-3xl xl:text-4xl mb-4">Hi, we're Roastar.</h1>
+              <p className="text-lg text-gray-700">
+                We believe that every business deserves to look like a really
+                big deal. From coffee to chocolate, pet treats to specialty
+                foods, whatever you’re packaging – we're here to help.
+              </p>
+            </div>
+
+            {/* First 2 cards */}
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-6 xl:col-span-2">
+              {cards.slice(0, 2).map((card, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow p-6 flex flex-col justify-between h-full w-full transition-all duration-300 hover:shadow-lg"
+                >
+                  <div>
+                    <Image
+                      src={card.icon}
+                      alt="icon"
+                      width={40}
+                      height={40}
+                      className="mb-4"
+                    />
+                    <h2 className="font-bold text-lg mb-2">{card.title}</h2>
+                    <p className="text-gray-700">{card.desc}</p>
+                  </div>
+                  <Link
+                    href={card.link.href}
+                    className="mt-4 text-[#B03A2E] font-semibold hover:underline"
+                  >
+                    {card.link.text}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* First 2 cards */}
-          <div className="lg:col-span-2 grid grid-cols- md:grid-cols-2 gap-6">
-            {cards.slice(0, 2).map((card, index) => (
+          {/* === BOTTOM SECTION: Last 4 Cards === */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-10">
+            {cards.slice(2).map((card, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow p-6 flex flex-col h-full"
+                className="bg-white rounded-xl shadow p-6 flex flex-col justify-between h-full w-full transition-all duration-300 hover:shadow-lg"
               >
-                <div className="mb-4">
-                  <Image src={card.icon} alt="icon" width={40} height={40} />
+                <div>
+                  <Image
+                    src={card.icon}
+                    alt="icon"
+                    width={40}
+                    height={40}
+                    className="mb-4"
+                  />
+                  <h2 className="font-bold text-lg mb-2">{card.title}</h2>
+                  <p className="text-gray-700">{card.desc}</p>
                 </div>
-                <h2 className="font-bold text-lg mb-2">{card.title}</h2>
-                <p className="flex-1">{card.desc}</p>
                 <Link
                   href={card.link.href}
                   className="mt-4 text-[#B03A2E] font-semibold hover:underline"
@@ -100,28 +140,6 @@ const CardContainer = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Bottom 4 cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-          {cards.slice(2).map((card, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow p-6 flex flex-col h-full"
-            >
-              <div className="mb-4">
-                <Image src={card.icon} alt="icon" width={40} height={40} />
-              </div>
-              <h2 className="font-bold text-lg mb-2">{card.title}</h2>
-              <p className="flex-1">{card.desc}</p>
-              <Link
-                href={card.link.href}
-                className="mt-4 text-[#B03A2E] font-semibold hover:underline"
-              >
-                {card.link.text}
-              </Link>
-            </div>
-          ))}
         </div>
       </div>
     </div>

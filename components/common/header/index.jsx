@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { FaPencil } from "react-icons/fa6";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { MdMenu } from "react-icons/md";
 
@@ -15,10 +16,14 @@ const Header = () => {
   const headerRef = useRef(null);
 
   const navItems = [
-    { label: "Shop by Product", id: "product" },
-    { label: "Shop by Industry", id: "industry" },
-    { label: "Resources", id: "resources" },
-    { label: "About", id: "about" },
+    { label: "Shop by Product", id: "product", image: "/down.png" },
+    {
+      label: "Shop by Industry",
+      id: "industry",
+      image: "/down.png",
+    },
+    { label: "Resources", id: "resources", image: "/down.png" },
+    { label: "About", id: "about", image: "/down.png" },
   ];
 
   useEffect(() => {
@@ -36,39 +41,37 @@ const Header = () => {
 
   return (
     <nav class="sticky lg:px-20 sm:px-2 md:px-8 z-50 py-5 top-0 shadow-xl bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 ">
-      <div className="res_class">
-        <div className=" flex justify-between w-full items-center ">
-          <div className="flex justify-between items-center gap-8">
-            <div className="flex items-center ">
-              <a
-                href="#"
-                class="flex items-center space-x-3 rtl:space-x-reverse"
-              >
-                <div className=" flex items-center w-full justify-center  gap-10">
-                  <div >
-                    <Image
-                    className="h-6 sm:h-8  md:h-10 lg:h-12"
-                      src="/roastar_logo.60c5f50c (1).svg"
-                      alt="roaster"
-                      width={200}
-                      height={80}
-                      
-                    />
-                  </div>
-                </div>
-              </a>
-            </div>
+      <div className=" flex justify-between w-full items-center relative">
+        <div className="flex justify-between items-center gap-8">
+          <div className="flex items-center pl-4 md:ml-0">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+              <Image
+                src="/mylar-bags.jpg"
+                alt="roaster"
+                width={150}
+                height={60}
+                className="object-contain "
+              />
+            </a>
+          </div>
 
-            <div
-              className=" xl:block hidden  w-full  md:w-auto"
-              id="navbar-dropdown"
+          <div className=" xl:block hidden  w-full  md:w-auto">
+            <ul
+              ref={headerRef}
+              className="flex gap-8 justify-center  text-lg font-semibold text-gray-700"
             >
-              <ul
-                ref={headerRef}
-                className="flex gap-8 justify-center  text-lg font-semibold text-gray-700"
-              >
-                {navItems.map((item) => (
-                  <li key={item.id} className="relative group">
+              {navItems.map((item) => (
+                <li key={item.id} className="relative group">
+                  <div
+                    onClick={() =>
+                      setOpenDropdown(
+                        openDropdown === item.id ? null : item.id // Toggle open/close
+                      )
+                    }
+                    className={`${
+                      openDropdown === item.id ? "text-[#6A1826]" : "text-black"
+                    } hover:text-[#6A1826] cursor-pointer flex items-center gap-1 transition-colors duration-200 text-bold`}
+                  >
                     <button
                       onClick={() =>
                         setOpenDropdown(
@@ -83,53 +86,56 @@ const Header = () => {
                     >
                       {item.label}
                     </button>
+                    <Image
+                      src={item.image}
+                      alt="dropdown icon"
+                      width={20}
+                      height={20}
+                      className={`transition-transform duration-300 hover:text-[#6A1826] cursor-pointer ${
+                        openDropdown === item.id ? "rotate-180" : ""
+                      }
+                      `}
+                    />
+                  </div>
 
-                    {openDropdown === item.id && (
-                      <div className="absolute left-0 top-full">
-                        {item.id === "product" && <MegaMenu />}
-                        {item.id === "industry" && <IndustryMenu />}
-                        {item.id === "resources" && <ResourcesMenu />}
-                        {item.id === "about" && <AboutMenu />}
-                      </div>
-                    )}
-                  </li>
-                ))}
-                <div className="text-green-400   hover:text-[#6A1826]">
-                  Deal
-                </div>
-              </ul>
-            </div>
-          </div>
-          <div
-            id="design-price-div"
-            className="px-4    items-center xl:block hidden"
-          >
-            <div className=" flex flex-col-reverse flex-wrap gap-x-10">
-              <Link
-                href="/"
-                className="btn-primary inline-flex items-center gap-2 text-white border-r-8 border-l-8 bg-black hover:bg-[#8B2232] rounded-2xl font-semibold  px-4 py-4  transition-all duration-300 ease-in-out  hover:-translate-y-1"
-              >
-                <span className="icon icon-fill-current text-[20px]">
-                  <FaPencil />
-                </span>
-                Design & Price
-              </Link>
-            </div>
-          </div>
-          <div className="relative">
-            <button 
-              className="xl:hidden block absolute -top-4"
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              {menuOpen ? (
-                <IoClose className="size-10 absolute sm-px-2 md-px-6" />
-              ) : (
-                <MdMenu className="size-10 sm-px-2 md-px-10" />
-              )}
-
-            </button>
+                  {openDropdown === item.id && (
+                    <div className="absolute left-0 top-full">
+                      {item.id === "product" && <MegaMenu />}
+                      {item.id === "industry" && <IndustryMenu />}
+                      {item.id === "resources" && <ResourcesMenu />}
+                      {item.id === "about" && <AboutMenu />}
+                    </div>
+                  )}
+                </li>
+              ))}
+              <div className="text-green-400   hover:text-[#6A1826]">Deal</div>
+            </ul>
           </div>
         </div>
+        <div className="px-4  xl:block hidden">
+          <div className=" ">
+            <Link
+              href="/"
+              className="btn-primary inline-flex items-center gap-2 text-white border-r-8 border-l-8 bg-black hover:bg-[#8B2232] rounded-2xl font-semibold  px-4 py-4  transition-all duration-300 ease-in-out  hover:-translate-y-1"
+            >
+              <span className="icon icon-fill-current text-[20px]">
+                <FaPencil />
+              </span>
+              Design & Price
+            </Link>
+          </div>
+        </div>
+
+        <button
+          className="xl:hidden block absolute right-2   top-2  "
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? (
+            <IoClose className="size-8 absolute sm-px-2 md-pr-6 -left-10" />
+          ) : (
+            <MdMenu className="size-8 sm-px-2 md-pr-10" />
+          )}
+        </button>
       </div>
 
       {/* for mobile view */}
@@ -141,17 +147,17 @@ const Header = () => {
         >
           <div className="flex flex-col start">
             <div>
-                <div className="mb-4  gap-x-10">
-              <Link
-                href="/"
-                className="btn-primary inline-flex items-center gap-2 text-white border-r-8 border-l-8 bg-black hover:bg-[#8B2232] rounded-2xl font-semibold  px-4 py-4  transition-all duration-300 ease-in-out  hover:-translate-y-1"
-              >
-                <span className="icon icon-fill-current text-[20px]">
-                  <FaPencil />
-                </span>
-                Design & Price
-              </Link>
-            </div>
+              <div className="mb-4  gap-x-10">
+                <Link
+                  href="/"
+                  className="btn-primary inline-flex items-center gap-2 text-white border-r-8 border-l-8 bg-black hover:bg-[#8B2232] rounded-2xl font-semibold  px-4 py-4  transition-all duration-300 ease-in-out  hover:-translate-y-1"
+                >
+                  <span className="icon icon-fill-current text-[20px]">
+                    <FaPencil />
+                  </span>
+                  Design & Price
+                </Link>
+              </div>
               <h3
                 className="font-bold   mb-3 uppercase text-md  hover:underline cursor-pointer"
                 style={{}}
@@ -309,9 +315,11 @@ const Header = () => {
           </div>
 
           <div className="col-span-1">
-            <h1 className="font-bold text-black cursor-pointer text-lg">Shop by Industry</h1>
+            <h1 className="font-bold text-black cursor-pointer text-lg">
+              Shop by Industry
+            </h1>
             <ul>
-              <li className="hover:text-[#6A1826] cursor-pointer hover:underline">
+              <li className="hover:text-[#6A1826]  cursor-pointer hover:underline">
                 Coffee
               </li>
               <li className="hover:text-[#6A1826] cursor-pointer hover:underline">

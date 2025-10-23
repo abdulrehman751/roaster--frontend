@@ -9,7 +9,7 @@ const FooterComponent = () => {
        
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <h2 className="text-2xl font-bold text-white mr-2">ROASTAR</h2>
+              <h2 className="text-2xl font-bold text-white mr-2">MYLARBAGS</h2>
               <div className="w-6 h-6 text-white">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
