@@ -4,11 +4,11 @@ import React from "react";
 const MegaMenu = () => {
   return (
     <div
-      className="flex items-center sticky  z-50  left-10 top-full mt-2 bg-white shadow-xl rounded-lg p-8 w-[1100px] 
+      className="flex items-center sticky  z-50   mt-2 bg-white shadow-xl rounded-lg p-8 w-[1100px] 
       opacity-100  "
     >
       {/* Column 1 */}
-      <div className="grid grid-cols-4 gap-12 ">
+      <div className="flex  gap-x-12 ">
         <div>
           <Link href="/custom-printed">
             <h3 className="font-bold text-black  mb-3 uppercase text-md hover:underline cursor-pointer">
@@ -27,7 +27,7 @@ const MegaMenu = () => {
               </li>
             </Link>
             <Link href="/flat bottom bag">
-              <li className="hover:text-[#6A1826] cursor-pointer">
+              <li className="hover:text-[#6A1826]  hover:underline cursor-pointer">
                 Flat Bottom Bag
               </li>
             </Link>

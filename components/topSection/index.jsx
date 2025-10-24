@@ -20,8 +20,8 @@ const TopSection = () => {
             <img className=" w-[600] xl:w-[1000]" src="/filters_format(webp)_7.webp" alt="perk" />
             <div className="pl-12 flex flex-col  pt-2 pr-5 ">
               {/* Heading & Paragraph */}
-              <div className="flex flex-col gap-5 items-start">
-                <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 tracking-tighter">
+              <div className="flex flex-col    ">
+                <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 ">
                   Fast. Easy. Custom-printed packaging.
                 </h1>
                 <div>
@@ -36,7 +36,7 @@ const TopSection = () => {
               </div>
 
               {/* Buttons — Only visible on lg and above */}
-              <div className=" flex-col w-full lg:block hidden items-center gap-5 xl:gap-6 mt-6 ">
+              <div className=" flex-col w-full lg:block hidden items-center gap-5 xl:gap-6 mt-6  ">
                 <div className=" flex  flex-col sm:flex-row gap-3    mt-4   ">
                   <Link href="/" passHref className="w-full sm:w-auto">
                     <button className="flex justify-center items-center font-bold bg-black text-white xl:text-lg lg:px-6 lg:py-8 xl:px-7 xl:py-5 w-full sm:w-auto rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
@@ -107,19 +107,21 @@ const TopSection = () => {
           </p>
         </div>
       </div>
-      <div className="mx-auto px-3 my-10 xl:mt-12">
+      <div className="mx-auto px-3 my-10 xl:mt-12 w-[950px]">
         <h1 className="font-bold xl:text-5xl md:text-3xl text-3xl    tracking-tighter text-center ">
           Custom bags, tin cans, labels, and beyond.
         </h1>
         <h2 className="font-bold xl:text-3xl mt-7 uppercase tracking-tighter text-center text-blue-500">
           The way custom-printed packaging was meant to be
         </h2>
+        
         <p className=" font-bold text-sm xl:text-xl mt-5 sm:tracking-tighter  text-center text-gray-700">
           Use your own art or have our network of designers help you bring your
           vision to life.Pick your perfect exterior,including materials, colors,{" "}
           finishes, and special effects. Did we mention the shockingly sensible
           order quantities?
         </p>
+        
       </div>
     </div>
   );

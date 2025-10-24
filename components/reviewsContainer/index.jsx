@@ -77,7 +77,7 @@ const ReviewsSection = () => {
               <p className="text-gray-500 text-sm mt-1">
                 TrustScore 4.9 |{" "}
                 <a href="#" className="underline">
-                  317 reviews
+                  349 reviews
                 </a>
               </p>
             </div>
