@@ -30,11 +30,18 @@ body {
 .clip_path {
   clip-path: polygon(0 0, 100% 13%, 100% 87%, 0 100%);
 }
-.coffee_clip_path{
-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
+.coffee_clip_path {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
 }
-
-
+.clip_path_resources {
+  clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 100%);
+}
+.clip_path_questions{
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 93%);
+}
+.clip_path_flat{
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+}
 
 /* .main_clip{
   clip-path: polygon(0 1%, 100% 0, 100% 89%, 0 100%);

@@ -361,7 +361,7 @@ const CoffeePackaging = () => {
               {/* Buttons — Only visible on lg and above */}
               <div className=" flex-col w-full lg:block hidden items-center gap-5 xl:gap-6 mt-6 ">
                 <div className=" flex  flex-col sm:flex-row gap-3    mt-4   ">
-                  <Link href="/" passHref className="w-full sm:w-auto">
+                  <Link href="/"  className="w-full sm:w-auto">
                     <button className="flex justify-center items-center font-bold bg-black text-white xl:text-lg lg:px-6 lg:py-8 xl:px-7 xl:py-5 w-full sm:w-auto rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
                       Not sure where to start?Take our quiz
                     </button>

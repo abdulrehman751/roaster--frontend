@@ -21,7 +21,7 @@ const MegaMenu = () => {
             </h4>
           </Link>
           <ul className="space-y-2 mt-2">
-            <Link href="/flat pouch">
+            <Link href="/products/custom-flat-pouch">
               <li className="hover:text-[#6A1826] cursor-pointer hover:underline">
                 Flat Pouch
               </li>
