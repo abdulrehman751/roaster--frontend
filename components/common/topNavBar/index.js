@@ -50,7 +50,7 @@ const TopNavBar = () => {
             <IoSearchSharp size={20} />
           </button>
         </Link>
-        <Link href="/">
+        <Link href="/register">
           <button>
             <RiAdminFill size={20} />
           </button>

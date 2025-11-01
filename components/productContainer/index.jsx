@@ -29,11 +29,11 @@ const ProductContainer = () => {
 
   const images = [
     { id: "Coffee", image: "/filters_format(webp)_4.webp" },
-    { id: "Chocolate", image: "/chocolate-swirl-black.svg" },
-    { id: "Food & Snacks", image: "strawberry-black.svg" },
-    { id: "Pet Food & Treats", image: "/paw-black.svg" },
-    { id: "Health & Beauty", image: "/health-beauty-black.svg" },
-    { id: "Tea", image: "/mug-tea-black.svg" },
+    { id: "Chocolate", image: "/filters_format(webp)_26.webp" },
+    { id: "Food & Snacks", image: "/filters_format(webp)_27.webp" },
+    { id: "Pet Food & Treats", image: "/filters_format(webp)_28.webp" },
+    { id: "Health & Beauty", image: "/filters_format(webp)_29.webp" },
+    { id: "Tea", image: "/filters_format(webp)_30.webp" },
   ];
 
   const [selectedId, setSelectedId] = useState(images?.[0]?.id);

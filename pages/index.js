@@ -25,6 +25,7 @@ export default function Home() {
     <div className="w-full">
       <TopNavBar />
       <Header />
+      
       <TopSection />
       <SliderSection />
       <CardContainer />

@@ -1,6 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FooterComponent = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/newsletter`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await response.json();
+      setMessage(data.message || "Signed up successfully!");
+    } catch (err) {
+      setMessage("Error signing up. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-gray-900 text-white py-12 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -57,16 +87,20 @@ const FooterComponent = () => {
 
           <div className="lg:col-span-1">
             <h3 className="text-lg font-bold text-white mb-4">NEWSLETTER SIGN UP</h3>
-            <div className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="email"
+                required
+                
+                value={email}
+                onChange={(e)=> setEmail(e.target.value)}
                 placeholder="Enter Email Address*"
                 className="w-full px-3 py-2 rounded-md bg-transparent border border-white text-white placeholder-white focus:outline-none focus:ring-1 focus:ring-white"
               />
-              <button className="w-[60%] px-3 py-2 rounded-md border border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-200">
+              <button type='submit'  disabled={loading} className="w-[60%] px-3 py-2 rounded-md border border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-200">
                 Sign up
               </button>
-            </div>
+            </form>
           </div>
           <div className="lg:col-span-1">
             <h3 className="text-lg font-bold text-white mb-4">QUICK LINKS</h3>

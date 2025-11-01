@@ -294,11 +294,11 @@ function Products() {
                 <label className="text-md font-light uppercase">Finish</label>
                 <div className="flex gap-3">
                   <input
-                    className="border-[0.3px] px-15 py-3 rounded-md hover:border-black"
+                    className="border-[0.3px] w-full sm:w-[300px] px-4 py-3 text-left rounded-md hover:border-black"
                     type="text"
                   />
                   <input
-                    className="border-[0.3px] px-15 py-3 rounded-md hover:border-black"
+                    className="border-[0.3px] w-full sm:w-[300px] px-4 py-3 rounded-md hover:border-black"
                     type="text"
                   />
                 </div>
@@ -307,7 +307,7 @@ function Products() {
                 <label className="text-md font-light uppercase">size</label>
                 <div className="flex gap-3">
                   <input
-                    className="border-[0.3px] px-50 py-3 rounded-md hover:border-black"
+                    className="border-[0.3px] w-full sm:w-[600px] px-4 py-3 rounded-md hover:border-black"
                     type="text"
                   />
                 </div>
@@ -318,19 +318,19 @@ function Products() {
                 </label>
                 <div className="flex gap-3">
                   <input
-                    className="border-[0.3px] px-50 py-3 rounded-md hover:border-black"
+                    className="border-[0.3px] w-full sm:w-[600px] px-4 py-3 rounded-md hover:border-black"
                     type="text"
                   />
                 </div>
               </div>
               <div className="flex mt-6  flex-col  gap-4">
                 <Link className="" href="/">
-                  <button className="flex  font-bold bg-black text-white xl:text-lg lg:px-6 lg:py-8 xl:px-50 xl:py-[16px] rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
+                  <button className="flex items-center justify-center w-full  font-bold bg-black text-white xl:text-lg lg:px-6 lg:py-8 sm:w-[600px] xl:px-8 xl:py-[16px] rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
                     Build your bag quote
                   </button>
                 </Link>
                 <Link href="">
-                  <button className="flex  font-bold text-black border hover:text-white xl:text-lg lg:px-6 lg:py-8 xl:px-45 xl:py-[15px]  rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
+                  <button className="flex  items-center justify-center  font-bold text-black border hover:text-white xl:text-lg lg:px-6 lg:py-8 w-full sm:w-[600px] xl:px-8 xl:py-[15px]  rounded-xl transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1">
                     Get your sample pack now
                   </button>
                 </Link>
@@ -338,7 +338,7 @@ function Products() {
             </div>
           </div>
         </div>
-        <div className="shadow-2xl mb-40  p-20 rounded-2xl w-full">
+        <div className="shadow-2xl mb-40  p-20 rounded-2xl ">
           <div className="flex gap-10 border-b pb-2 text-gray-500">
             {detail.map((item) => (
               <button
