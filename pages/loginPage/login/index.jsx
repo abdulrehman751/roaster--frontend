@@ -2,7 +2,7 @@
 import FooterComponent from "@/components/common/footer";
 import Header from "@/components/common/header";
 import TopNavBar from "@/components/common/topNavBar";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
@@ -13,21 +13,134 @@ export default function LoginPage() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const handleDocClick = (e) => {
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        setErrors({});
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocClick);
+    return () => document.removeEventListener("mousedown", handleDocClick);
+  }, []);
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validationForm = () => {
+    const newErrors = {};
+    if (!formData.email || !formData.email.trim())
+      newErrors.email = "Email is required";
+    else if (!emailRegex.test(formData.email))
+      newErrors.email = "Enter a valid email";
+    if (!formData.password || !formData.password.trim())
+      newErrors.password = "Password is required";
+    else if (formData.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handlelogin = async (e) => {
+    e.preventDefault();
+
+    // Validate form before submission
+    if (!validationForm()) {
+      return; // Stop if validation fails
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/users/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch (err) {}
+
+      if (res.ok) {
+        // Handle successful login
+        alert("Successfully logged in!");
+        // Add your login success logic here (e.g., redirect, store token, etc.)
+      } else {
+        // Handle login error
+        const message = data?.message || "Invalid email or password";
+        alert(message);
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("Something went wrong!");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
+
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: newValue,
+    });
+
+    // clear field-specific error when user fixes it
+    setErrors((prev) => {
+      const copy = { ...prev };
+      if (copy[name]) {
+        if (name === "email") {
+          if (newValue && emailRegex.test(newValue)) delete copy[name];
+        } else if (name === "password") {
+          if (newValue && newValue.length >= 6) delete copy[name];
+        } else {
+          if (newValue && String(newValue).trim() !== "") delete copy[name];
+        }
+      }
+      return copy;
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Login Data:", formData);
-    // Example:
-    // await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {...})
+  // Removed unused handleSubmit function
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const newErrors = { ...errors };
+
+    if (!value || !value.trim()) {
+      newErrors[name] = `${
+        name.charAt(0).toUpperCase() +
+        name
+          .slice(1)
+          .replace(/([A-Z])/g, " $1")
+          .trim()
+      } is required`;
+    } else if (name === "email" && !emailRegex.test(value)) {
+      newErrors[name] = "Enter a valid email";
+    } else if (name === "password" && value.length < 6) {
+      newErrors[name] = "Password must be at least 6 characters";
+    } else {
+      delete newErrors[name];
+    }
+
+    setErrors(newErrors);
   };
+
+  const isFormFilled =
+    formData.email && formData.password && formData.password.length >= 6;
 
   return (
     <div>
@@ -46,7 +159,7 @@ export default function LoginPage() {
             * Required fields
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handlelogin} className="space-y-5">
             {/* Email */}
             <div>
               <label className="block text-[18px]  mb-1">Email Address *</label>
@@ -56,8 +169,14 @@ export default function LoginPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
+                onBlur={handleBlur}
+                className={`w-full border ${
+                  errors.email ? "border-red-500" : "border-gray-300"
+                } rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none`}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
 
             {/* Password */}
@@ -70,8 +189,14 @@ export default function LoginPage() {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
+                  onBlur={handleBlur}
+                  className={`w-full border ${
+                    errors.password ? "border-red-500" : "border-gray-300"
+                  } rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none`}
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -100,9 +225,10 @@ export default function LoginPage() {
             <div>
               <button
                 type="submit"
+                disabled={!isFormFilled || isSubmitting}
                 className="w-full bg-black text-white py-4 rounded-md text-[18px] font-semibold  transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1"
               >
-                Log In
+                {isSubmitting ? "log in..." : "Log In"}
               </button>
             </div>
 
