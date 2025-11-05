@@ -21,7 +21,7 @@ export default function Register() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
 
-  // verification flow state (added today)
+ 
   const [verificationSent, setVerificationSent] = useState(false);
   const [verificationEmail, setVerificationEmail] = useState("");
   const [checkingVerification, setCheckingVerification] = useState(false);
@@ -57,7 +57,7 @@ export default function Register() {
           setVerificationEmail("");
         }
       } catch (err) {
-        // ignore polling errors; keep trying
+        
       }
     }, 5000);
 
@@ -314,7 +314,7 @@ export default function Register() {
       <TopNavBar />
       <Header />
       <div className="bg-[#E1F3F8] h-[150px]">
-        <h1 className="text-5xl font-bold pl-20 pt-15">Create an Acount</h1>
+        <h1 className="text-5xl font-bold pl-20 pt-15">Create an Account</h1>
       </div>
       <div className="flex justify-center items-center   px-4 py-10">
         <div className="w-full max-w-2xl bg-white rounded-xl  p-8">

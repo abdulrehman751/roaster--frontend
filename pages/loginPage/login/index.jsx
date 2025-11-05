@@ -76,6 +76,10 @@ export default function LoginPage() {
         // Handle successful login
         alert("Successfully logged in!");
         // Add your login success logic here (e.g., redirect, store token, etc.)
+        setFormData({
+          email: "",
+          password: "",
+        });
       } else {
         // Handle login error
         const message = data?.message || "Invalid email or password";
@@ -159,7 +163,7 @@ export default function LoginPage() {
             * Required fields
           </p>
 
-          <form onSubmit={handlelogin} className="space-y-5">
+          <form ref={formRef} onSubmit={handlelogin} className="space-y-5">
             {/* Email */}
             <div>
               <label className="block text-[18px]  mb-1">Email Address *</label>
@@ -226,7 +230,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={!isFormFilled || isSubmitting}
-                className="w-full bg-black text-white py-4 rounded-md text-[18px] font-semibold  transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1"
+                className="w-full bg-black text-white py-4 rounded-md text-[18px] font-semibold   transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1  disabled:opacity-50 disabled:cursor-not-allowed "
               >
                 {isSubmitting ? "log in..." : "Log In"}
               </button>
