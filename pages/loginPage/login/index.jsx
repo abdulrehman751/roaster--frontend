@@ -4,6 +4,7 @@ import Header from "@/components/common/header";
 import TopNavBar from "@/components/common/topNavBar";
 import { useEffect, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -17,16 +18,16 @@ export default function LoginPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
 
-  useEffect(() => {
-    const handleDocClick = (e) => {
-      if (formRef.current && !formRef.current.contains(e.target)) {
-        setErrors({});
-      }
-    };
+//   useEffect(() => {
+//     const handleDocClick = (e) => {
+//       if (formRef.current && !formRef.current.contains(e.target)) {
+//         setErrors({});
+//       }
+//     };
 
-    document.addEventListener("mousedown", handleDocClick);
-    return () => document.removeEventListener("mousedown", handleDocClick);
-  }, []);
+//     document.addEventListener("mousedown", handleDocClick);
+//     return () => document.removeEventListener("mousedown", handleDocClick);
+//   }, []);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const validationForm = () => {
@@ -120,30 +121,30 @@ export default function LoginPage() {
 
   // Removed unused handleSubmit function
 
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    const newErrors = { ...errors };
+//   const handleBlur = (e) => {
+//     const { name, value } = e.target;
+//     const newErrors = { ...errors };
 
-    if (!value || !value.trim()) {
-      newErrors[name] = `${
-        name.charAt(0).toUpperCase() +
-        name
-          .slice(1)
-          .replace(/([A-Z])/g, " $1")
-          .trim()
-      } is required`;
-    } else if (name === "email" && !emailRegex.test(value)) {
-      newErrors[name] = "Enter a valid email";
-    } else if (name === "password" && value.length < 6) {
-      newErrors[name] = "Password must be at least 6 characters";
-    } else {
-      delete newErrors[name];
-    }
+//     if (!value || !value.trim()) {
+//       newErrors[name] = `${
+//         name.charAt(0).toUpperCase() +
+//         name
+//           .slice(1)
+//           .replace(/([A-Z])/g, " $1")
+//           .trim()
+//       } is required`;
+//     } else if (name === "email" && !emailRegex.test(value)) {
+//       newErrors[name] = "Enter a valid email";
+//     } else if (name === "password" && value.length < 6) {
+//       newErrors[name] = "Password must be at least 6 characters";
+//     } else {
+//       delete newErrors[name];
+//     }
 
-    setErrors(newErrors);
-  };
+//     setErrors(newErrors);
+//   };
 
-  const isFormFilled =
+   const isFormFilled =
     formData.email && formData.password && formData.password.length >= 6;
 
   return (
@@ -173,7 +174,7 @@ export default function LoginPage() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                // onBlur={handleBlur}
                 className={`w-full border ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 } rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none`}
@@ -193,7 +194,7 @@ export default function LoginPage() {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                //   onBlur={handleBlur}
                   className={`w-full border ${
                     errors.password ? "border-red-500" : "border-gray-300"
                   } rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none`}
@@ -229,7 +230,7 @@ export default function LoginPage() {
             <div>
               <button
                 type="submit"
-                disabled={!isFormFilled || isSubmitting}
+                // disabled={!isFormFilled || isSubmitting}
                 className="w-full bg-black text-white py-4 rounded-md text-[18px] font-semibold   transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1  disabled:opacity-50 disabled:cursor-not-allowed "
               >
                 {isSubmitting ? "log in..." : "Log In"}
@@ -238,18 +239,18 @@ export default function LoginPage() {
 
             {/* Links */}
             <div className="flex gap-6 justify-center items-center text-[18px] mt-4">
-              <a
+              <Link
                 href="/forgetPassword/forget"
                 className="text-[rgb(131,44,65,1)] underline"
               >
                 Forgot password
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/registerPage/register"
                 className="text-[rgb(131,44,65,1)] underline"
               >
                 Create account
-              </a>
+              </Link>
             </div>
           </form>
         </div>

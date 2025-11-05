@@ -4,6 +4,8 @@ import Header from "@/components/common/header";
 import TopNavBar from "@/components/common/topNavBar";
 import { useState, useEffect, useRef } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -20,8 +22,9 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef(null);
-
+  const router = useRouter();
  
+
   const [verificationSent, setVerificationSent] = useState(false);
   const [verificationEmail, setVerificationEmail] = useState("");
   const [checkingVerification, setCheckingVerification] = useState(false);
@@ -42,6 +45,8 @@ export default function Register() {
           // verified — finalize on the client
           clearInterval(id);
           alert("✅ Email verified — account created");
+        
+          router.push("/loginPage/login");
           setFormData({
             firstName: "",
             lastName: "",
@@ -56,27 +61,24 @@ export default function Register() {
           setVerificationSent(false);
           setVerificationEmail("");
         }
-      } catch (err) {
-        
-      }
+      } catch (err) {}
     }, 5000);
 
     return () => clearInterval(id);
   }, [verificationSent, verificationEmail]);
 
   // clear errors when clicking outside the form
-  useEffect(() => {
-    const handleDocClick = (e) => {
-      if (formRef.current && !formRef.current.contains(e.target)) {
-        setErrors({});
-      }
-    };
+  // useEffect(() => {
+  //   const handleDocClick = (e) => {
+  //     if (formRef.current && !formRef.current.contains(e.target)) {
+  //       setErrors({});
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleDocClick);
-    return () => document.removeEventListener("mousedown", handleDocClick);
-  }, []);
+  //   document.addEventListener("mousedown", handleDocClick);
+  //   return () => document.removeEventListener("mousedown", handleDocClick);
+  // }, []);
 
-  // simple email regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const validateForm = () => {
@@ -177,21 +179,14 @@ export default function Register() {
   };
 
   // quick boolean: all required fields filled and valid
-  const isFormFilled =
-    formData.firstName &&
-    formData.lastName &&
-    formData.companyName &&
-    formData.zipCode &&
-    emailRegex.test(formData.email) &&
-    formData.password &&
-    formData.password.length >= 6;
+  
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
     // Validate before call
     if (!validateForm()) {
-      return; // Stop if validation fails
+      return;
     }
 
     setIsSubmitting(true);
@@ -286,28 +281,28 @@ export default function Register() {
     });
   };
 
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    const newErrors = { ...errors };
+  // const handleBlur = (e) => {
+  //   const { name, value } = e.target;
+  //   const newErrors = { ...errors };
 
-    if (!value || !value.trim()) {
-      newErrors[name] = `${
-        name.charAt(0).toUpperCase() +
-        name
-          .slice(1)
-          .replace(/([A-Z])/g, " $1")
-          .trim()
-      } is required`;
-    } else if (name === "email" && !emailRegex.test(value)) {
-      newErrors[name] = "Enter a valid email";
-    } else if (name === "password" && value.length < 6) {
-      newErrors[name] = "Password must be at least 6 characters";
-    } else {
-      delete newErrors[name];
-    }
+  //   if (!value || !value.trim()) {
+  //     newErrors[name] = `${
+  //       name.charAt(0).toUpperCase() +
+  //       name
+  //         .slice(1)
+  //         .replace(/([A-Z])/g, " $1")
+  //         .trim()
+  //     } is required`;
+  //   } else if (name === "email" && !emailRegex.test(value)) {
+  //     newErrors[name] = "Enter a valid email";
+  //   } else if (name === "password" && value.length < 6) {
+  //     newErrors[name] = "Password must be at least 6 characters";
+  //   } else {
+  //     delete newErrors[name];
+  //   }
 
-    setErrors(newErrors);
-  };
+  //   setErrors(newErrors);
+  // };
 
   return (
     <div>
@@ -379,10 +374,10 @@ export default function Register() {
                   <input
                     name="firstName"
                     type="text"
-                    required
+                    // required
                     value={formData.firstName}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                   />
                   {errors.firstName && (
@@ -398,10 +393,10 @@ export default function Register() {
                   <input
                     name="lastName"
                     type="text"
-                    required
+                    // required
                     value={formData.lastName}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                   />
                   {errors.lastName && (
@@ -421,10 +416,10 @@ export default function Register() {
                   <input
                     name="companyName"
                     type="text"
-                    required
+                    // required
                     value={formData.companyName}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     className="w-full sm:w-[400px] border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                   />
                   {errors.companyName && (
@@ -438,10 +433,10 @@ export default function Register() {
                   <input
                     name="zipCode"
                     type="text"
-                    required
+                    // required
                     value={formData.zipCode}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     className="w-full sm:w-[190px] border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                   />
                   {errors.zipCode && (
@@ -460,10 +455,10 @@ export default function Register() {
                 <input
                   name="email"
                   type="email"
-                  required
+                  // required
                   value={formData.email}
                   onChange={handleChange}
-                  onBlur={handleBlur}
+                  // onBlur={handleBlur}
                   className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                 />
                 {errors.email && (
@@ -478,10 +473,10 @@ export default function Register() {
                   <input
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    required
+                    // required
                     value={formData.password}
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    // onBlur={handleBlur}
                     className="w-full border border-gray-300 rounded-md px-3 py-3 focus:ring-1 focus:ring-black focus:outline-none"
                   />
                   {errors.password && (
@@ -528,20 +523,20 @@ export default function Register() {
               {/* Submit Button */}
               <button
                 type="submit"
-                disabled={!isFormFilled || isSubmitting}
-                className={`w-full bg-black text-white py-4 text-[18px] rounded-md font-semibold  transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed`}
+                // disabled={!isFormFilled || isSubmitting}
+                className={`w-full bg-black text-white py-4 text-[18px] rounded-md font-semibold  transition-all duration-300 ease-in-out hover:bg-[#8B2232] hover:-translate-y-1 disabled:opacity-50 `}
               >
                 {isSubmitting ? "Creating..." : "Create Account"}
               </button>
 
               <p className="text-center text-[18px] mt-4">
                 Already have an account?{" "}
-                <a
+                <Link
                   href="/loginPage/login"
                   className="text-[rgb(131,44,65,1)] text-[18px]   underline"
                 >
                   Log in
-                </a>
+                </Link>
               </p>
             </form>
           )}
