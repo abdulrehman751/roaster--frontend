@@ -212,10 +212,10 @@ export default function Register() {
       try {
         data = await res.json();
       } catch (err) {
-        /* ignore json parse errors */
+   
       }
 
-      // Build a safe message and avoid showing raw internal errors to users
+     
       const serverMsg = data && (data.message || data.error);
       const message =
         serverMsg || (res.ok ? "Verification email sent" : "Request failed");

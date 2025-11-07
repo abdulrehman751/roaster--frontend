@@ -185,9 +185,9 @@ export default function LoginPage() {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="relative">
               <label className="block text-[18px]  mb-1">Password *</label>
-              <div className="relative">
+              
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
@@ -205,11 +205,11 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black"
+                  className="absolute right-3 top-[50px] -translate-y-1/2 text-gray-600 hover:text-black"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
-              </div>
+              
             </div>
 
             {/* Remember Me */}

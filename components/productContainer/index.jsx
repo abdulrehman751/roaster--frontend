@@ -46,21 +46,23 @@ const ProductContainer = () => {
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 pb-24">
         {/* LEFT: Image Section */}
-        <div className="flex-1 flex justify-center items-center">
+        <div className=" md:row-span-2 md:row-start-1 md:block md:col-start-1">
+        <div className=" flex items-center justify-center p-28 md:h-full md:w-full md:p-12">
           {activeImage ? (
             <Image
               key={activeImage.id}
               src={activeImage.image || images?.[0]?.id}
               alt={activeImage.id}
-              width={400}
-              height={400}
-              className="rounded-xl shadow-lg transition-all duration-500 ease-in-out scale-100 hover:scale-105"
+              width={300}
+              height={300}
+              className="transition-all duration-500 ease-in-out scale-100 hover:scale-105"
             />
           ) : (
             <div className="w-[400px] h-[400px] flex justify-center items-center border-2 border-dashed border-gray-300 rounded-xl text-gray-400">
               Select a Category
             </div>
           )}
+        </div>
         </div>
 
         {/* RIGHT: Buttons Section */}
@@ -74,7 +76,7 @@ const ProductContainer = () => {
             packaging—it’s looking fresh and staying fresh.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 w-full sm:grid-cols-2 gap-4">
             {categories.map((cat) => (
               <button
                 key={cat.id}
